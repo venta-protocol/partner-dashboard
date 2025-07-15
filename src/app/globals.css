@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+.inputStepper {
+  width: 2.6rem; /* This might be too narrow, depending on the font size. */
+  text-align: center;
+  height: 2rem; /* This is the height of your input field. */
+  line-height: 2rem; /* This should generally match the height to vertically center the text. */
+  padding: 0.2rem; /* Be explicit about units (e.g., rem, px). */
+  -webkit-appearance: textfield; /* This can help ensure it looks like a text field in WebKit browsers. */
+  border: 1px solid #ccc; /* Assuming you want a border. */
+  font-size: 1rem; /* Adjust this as needed for visibility. */
+  color: #333; /* Choose a text color that contrasts with the background. */
+  background-color: #fff; /* Choose a background color that contrasts with the text. */
+}
+
+.inputStepper::-webkit-inner-spin-button,
+.inputStepper::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.iconStyle {
+  cursor: pointer;
+  opacity: 0.4;
+  /* Set a specific size instead of a percentage */
+  width: 1.5rem; /* or 'w-8' in Tailwind */
+  height: 1.5rem; /* or 'h-8' in Tailwind */
+  /* Optional: Set a max size if you still want them to grow smaller than this */
+  max-width: 1.5rem; /* or 'max-w-[2.5rem]' in Tailwind */
+  max-height: 1.5rem; /* or 'max-h-[2.5rem]' in Tailwind */
+  transition: all 0.3s ease;
+}
+
+.iconStyle:hover {
+  opacity: 1;
+  /* Utilize Tailwind's utility classes for colors and shapes if possible */
+  background-color: var(
+    --background-color,
+    #f0f0f0
+  ); /* Custom property or use a Tailwind color */
+  border-radius: 9999px; /* or 'rounded-full' in Tailwind */
+}
+
+.custom-input-popover {
+  width: calc(100% - 1rem); /* Adjust the 1rem to your needs */
+  margin: 0.5rem; /* Optional, adjust as needed */
+}
+
+.sidebar-bg {
+  background-color: #f5f9fa;
+}
+
+.hover-bg-custom:hover {
+  background-color: #ecf0f2;
+  color: black;
+}
+
+.icon-color {
+  color: #333333;
+}
+
+.natural-shadow {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.bg-custom-color-selected {
+  background-color: #ecf0f3;
+}
+
+.icon-button-styles {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.icon-size-styles {
+  height: 23px;
+  width: 23px;
+}
+
+.gradient-background {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  /* min-height: 100vh; */
+}
+
+.black-background {
+  background-color: black;
+  color: white; /* Change text color to white for better visibility */
+}
+
+.bg-popover {
+  background-color: white; /* Or use a specific color code like #ffffff */
+}
+
+.card-title {
+  text-wrap: wrap;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.path {
+  stroke: #555;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* @layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+} */
+
+html,
+body {
+  overflow-x: hidden;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+/* For Webkit browsers like Chrome and Safari */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield; /* Standard property for compatibility */
+  -moz-appearance: textfield;
+}

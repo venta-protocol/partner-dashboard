@@ -1,0 +1,1083 @@
+{
+  "address": "CmwBr4P1MfaCfSgBM8Q7x9Z58NnWPSswwWpTqfx3zNSv",
+  "metadata": {
+    "name": "venta_pay",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "init_or_update_global",
+      "discriminator": [
+        38,
+        171,
+        50,
+        229,
+        111,
+        141,
+        84,
+        172
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "global",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "new_main_authority",
+          "type": {
+            "option": "pubkey"
+          }
+        },
+        {
+          "name": "new_manager_authority",
+          "type": {
+            "option": "pubkey"
+          }
+        },
+        {
+          "name": "new_treasury",
+          "type": {
+            "option": "pubkey"
+          }
+        },
+        {
+          "name": "new_status",
+          "type": {
+            "option": {
+              "defined": {
+                "name": "ProgramOperationalState"
+              }
+            }
+          }
+        },
+        {
+          "name": "new_base_tx_fee_bps",
+          "type": {
+            "option": "u16"
+          }
+        }
+      ]
+    },
+    {
+      "name": "init_or_update_merchant",
+      "discriminator": [
+        5,
+        37,
+        198,
+        118,
+        209,
+        53,
+        145,
+        78
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "factor_auth",
+          "signer": true,
+          "optional": true
+        },
+        {
+          "name": "global"
+        },
+        {
+          "name": "merchant",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  101,
+                  114,
+                  99,
+                  104,
+                  97,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "seed"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "seed",
+          "type": "pubkey"
+        },
+        {
+          "name": "new_accepted_mints",
+          "type": {
+            "vec": "pubkey"
+          }
+        },
+        {
+          "name": "new_authority",
+          "type": {
+            "option": "pubkey"
+          }
+        },
+        {
+          "name": "new_partner",
+          "type": {
+            "option": "pubkey"
+          }
+        },
+        {
+          "name": "new_wallet",
+          "type": {
+            "option": "pubkey"
+          }
+        },
+        {
+          "name": "new_tx_partner_fee_bps",
+          "type": {
+            "option": "u16"
+          }
+        },
+        {
+          "name": "new_flags",
+          "type": {
+            "option": "u8"
+          }
+        }
+      ]
+    },
+    {
+      "name": "make_payment",
+      "discriminator": [
+        19,
+        128,
+        153,
+        121,
+        221,
+        192,
+        91,
+        53
+      ],
+      "accounts": [
+        {
+          "name": "global"
+        },
+        {
+          "name": "merchant",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  101,
+                  114,
+                  99,
+                  104,
+                  97,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "merchant.seed",
+                "account": "Merchant"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "buyer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "buyer_ata",
+          "writable": true
+        },
+        {
+          "name": "merchant_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "merchant"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "merchant_withdraw",
+      "discriminator": [
+        0,
+        102,
+        63,
+        159,
+        198,
+        163,
+        36,
+        194
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "factor_auth",
+          "signer": true,
+          "optional": true
+        },
+        {
+          "name": "global"
+        },
+        {
+          "name": "merchant_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "merchant"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "merchant",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  101,
+                  114,
+                  99,
+                  104,
+                  97,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "merchant.seed",
+                "account": "Merchant"
+              }
+            ]
+          }
+        },
+        {
+          "name": "receiving_ata",
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "receiving_wallet",
+          "type": "pubkey"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "withdraw_tx_fee",
+      "discriminator": [
+        25,
+        91,
+        248,
+        189,
+        119,
+        192,
+        59,
+        56
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "global"
+        },
+        {
+          "name": "merchant",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  101,
+                  114,
+                  99,
+                  104,
+                  97,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "merchant.seed",
+                "account": "Merchant"
+              }
+            ]
+          }
+        },
+        {
+          "name": "merchant_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "merchant"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "global_treasury_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "global"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "partner_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "merchant.partner",
+                "account": "Merchant"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Global",
+      "discriminator": [
+        167,
+        232,
+        232,
+        177,
+        200,
+        108,
+        114,
+        127
+      ]
+    },
+    {
+      "name": "Merchant",
+      "discriminator": [
+        71,
+        235,
+        30,
+        40,
+        231,
+        21,
+        32,
+        64
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "Unauthorized"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidSeed",
+      "msg": "Invalid seed"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidAuthority",
+      "msg": "Invalid authority"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidPartner",
+      "msg": "Invalid partner"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidWallet",
+      "msg": "Invalid wallet"
+    },
+    {
+      "code": 6005,
+      "name": "MintNotAccepted",
+      "msg": "Stablecoin not accepted"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidGlobalConfig",
+      "msg": "Invalid global config account"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidMerchantAccount",
+      "msg": "Invalid merchant account"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidGlobalTreasury",
+      "msg": "Invalid global treasury"
+    },
+    {
+      "code": 6009,
+      "name": "FrozenMerchantAccount",
+      "msg": "Frozen merchant account"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidVaultAccount",
+      "msg": "Invalid vault account"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidStrategyAccount",
+      "msg": "Invalid strategy account"
+    },
+    {
+      "code": 6012,
+      "name": "AmountExceedTransferLimit",
+      "msg": "Amount exceed single transfer limit"
+    },
+    {
+      "code": 6013,
+      "name": "ExceedVaultMaxCapacity",
+      "msg": "Vault capacity reached"
+    },
+    {
+      "code": 6014,
+      "name": "Overflow",
+      "msg": "Overflow in calculation"
+    },
+    {
+      "code": 6015,
+      "name": "InsufficientBalance",
+      "msg": "Insufficient balance"
+    },
+    {
+      "code": 6016,
+      "name": "InsufficientLockBalance",
+      "msg": "Invalid lock balance"
+    },
+    {
+      "code": 6017,
+      "name": "InvalidAmountInput",
+      "msg": "Amount must be greater than 0"
+    },
+    {
+      "code": 6018,
+      "name": "InvalidDiscriminator",
+      "msg": "Invalid discriminator input"
+    },
+    {
+      "code": 6019,
+      "name": "InvalidExtensionAccount",
+      "msg": "Invalid extension account"
+    },
+    {
+      "code": 6020,
+      "name": "InvalidMerchantExtension",
+      "msg": "Invalid merchant extension"
+    },
+    {
+      "code": 6021,
+      "name": "ProtocolHalted",
+      "msg": "Protocal is halted"
+    },
+    {
+      "code": 6022,
+      "name": "LockedExceedsAvailableBalance",
+      "msg": "Locked exceeds available amount"
+    },
+    {
+      "code": 6023,
+      "name": "MaximumFiftyMintLimit",
+      "msg": "Maximum 50 mint limit"
+    },
+    {
+      "code": 6024,
+      "name": "AcceptedMintsMustBeZero",
+      "msg": "Accepted mint lengthh must be zero to close"
+    },
+    {
+      "code": 6025,
+      "name": "InactiveBalanceNotZero",
+      "msg": "Inactive balance must be zero before removing mint"
+    },
+    {
+      "code": 6026,
+      "name": "DeployedBalanceNotZero",
+      "msg": "Deployed balance must be zero before removing mint"
+    },
+    {
+      "code": 6027,
+      "name": "InterestNotZero",
+      "msg": "Interest must be zero before removing mint"
+    },
+    {
+      "code": 6028,
+      "name": "LockedNotZero",
+      "msg": "Locked must be zero before removing mint"
+    },
+    {
+      "code": 6029,
+      "name": "ExtensionTVLMustBeZero",
+      "msg": "Extension TVL must be zero to close"
+    },
+    {
+      "code": 6030,
+      "name": "TransactionFeesNotZero",
+      "msg": "Treasury fees must be zero before removing mint"
+    },
+    {
+      "code": 6031,
+      "name": "InterestOverflow",
+      "msg": "Interest overflow in calculation"
+    },
+    {
+      "code": 6032,
+      "name": "MintAlreadyAccepted",
+      "msg": "Mint already accepted"
+    },
+    {
+      "code": 6033,
+      "name": "InvalidReceivingWallet",
+      "msg": "Invalid Receiving Wallet"
+    },
+    {
+      "code": 6034,
+      "name": "IllegalMerchantUpdate",
+      "msg": "Merchant must not be frozen for Wallet or 2FA update"
+    },
+    {
+      "code": 6035,
+      "name": "IllegalExtensionProgram",
+      "msg": "Extension cannot be the program itself"
+    },
+    {
+      "code": 6036,
+      "name": "IllegalAdapterProgram",
+      "msg": "Adapter cannot be the program itself"
+    },
+    {
+      "code": 6037,
+      "name": "FrozenExtension",
+      "msg": "Extension is frozen"
+    },
+    {
+      "code": 6038,
+      "name": "Invalid2FASigner",
+      "msg": "Invalid 2FA Signer"
+    },
+    {
+      "code": 6039,
+      "name": "MainSignerRequired",
+      "msg": "Update require global main authority signing"
+    },
+    {
+      "code": 6040,
+      "name": "ManagerSignerRequired",
+      "msg": "Update require global manager authority signing"
+    },
+    {
+      "code": 6041,
+      "name": "ExtensionRequireYieldGeneration",
+      "msg": "Extension require yield generation to be on"
+    },
+    {
+      "code": 6042,
+      "name": "MintStillAccepted",
+      "msg": "Mint still exist in merchant account"
+    },
+    {
+      "code": 6043,
+      "name": "WithdrawAmountMustNotExceedTVL",
+      "msg": "Withdraw amount must not exceed TVL"
+    },
+    {
+      "code": 6044,
+      "name": "InvalidInactiveBalance",
+      "msg": "Invalid inactive balance"
+    }
+  ],
+  "types": [
+    {
+      "name": "Global",
+      "serialization": "bytemuckunsafe",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "main_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "manager_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "base_tx_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "protocol_state",
+            "type": {
+              "defined": {
+                "name": "ProgramOperationalState"
+              }
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "_padding",
+            "type": {
+              "array": [
+                "u8",
+                3
+              ]
+            }
+          },
+          {
+            "name": "_reserved",
+            "docs": [
+              "Reserved space for future fields"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                256
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Merchant",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "seed",
+            "type": "pubkey"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "partner",
+            "type": "pubkey"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "accepted_mints",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "global_fees",
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "name": "partner_fees",
+            "type": {
+              "vec": "u64"
+            }
+          },
+          {
+            "name": "tx_partner_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "flags",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "_reserved",
+            "docs": [
+              "Reserved space for future fields"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                127
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProgramOperationalState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "NormalOperation"
+          },
+          {
+            "name": "HaltDeposit"
+          },
+          {
+            "name": "HaltAll"
+          }
+        ]
+      }
+    }
+  ]
+}
