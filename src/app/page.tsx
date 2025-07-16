@@ -1,13 +1,21 @@
-import { redirect } from "next/navigation";
-import { CardHeader, CardTitle } from "@/components/ui/card";
-import { auth } from "./auth";
+import CompanyLogo from "@/components/homepage/CompanyLogo";
+import Calculator from "@/components/homepage/Earn/Calculator";
+import FaqSection from "@/components/homepage/Faq";
+import Footer from "@/components/homepage/Footer";
+import GrowWithVenta from "@/components/homepage/Growth/GrowWithVenta";
+import Hero from "@/components/homepage/Hero";
+import Navbar from "@/components/homepage/Navbar";
 
-export default async function Home() {
-  const session = await auth();
-
-  if (session && session.user && session.user.id) {
-    redirect("/dashboard");
-  } else {
-    redirect("/login?callbackUrl=/");
-  }
+export default function Home() {
+  return (
+    <main className="text-white">
+      <Navbar />
+      <Hero />
+      <CompanyLogo />
+      <GrowWithVenta />
+      <Calculator />
+      <FaqSection />
+      <Footer />
+    </main>
+  );
 }

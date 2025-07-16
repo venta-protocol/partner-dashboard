@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.9.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1125.3 467"
+	 style="enable-background:new 0 0 1125.3 467;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#8C98A4;}
+</style>
+<metadata>
+	<sfw  xmlns="&ns_sfw;">
+		<slices></slices>
+		<sliceSourceBounds  bottomLeftOrigin="true" height="451.4" width="1125.3" x="0" y="7.8"></sliceSourceBounds>
+		<optimizationSettings>
+			<targetSettings  fileFormat="PNG24Format" targetSettingsID="0">
+				<PNG24Format  filtered="false" interlaced="false" matteColor="#FFFFFF" noMatteColor="false" transparency="true">
+					</PNG24Format>
+			</targetSettings>
+		</optimizationSettings>
+	</sfw>
+</metadata>
+<g>
+	<g>
+		<g>
+			<polygon class="st0" points="190.3,7.8 190.3,227.8 130.8,227.8 130.8,144.9 59.5,144.9 59.5,227.8 0,227.8 0,67.3 59.5,7.8 
+				59.5,91.4 130.9,91.4 130.9,7.8 			"/>
+			<polygon class="st0" points="199.2,150.8 342.3,7.8 407.4,7.8 407.4,227.8 347.9,227.8 347.9,198.1 242.9,198.1 296.5,144.6 
+				347.9,144.6 347.9,81.5 199.2,230.8 199.2,150.9 			"/>
+			<path class="st0" d="M415.4,118.1c0-63.3,49.1-110.3,113-110.3h78.8l-56.5,56.5h-22.3c-30.3,0-52.9,23.5-52.9,53.8
+				s22,53.2,52.9,53.2h22.9v56.5h-22.9C464.8,227.8,415.4,181.1,415.4,118.1L415.4,118.1z"/>
+			<polygon class="st0" points="678.6,105.3 719.6,146.4 719.6,227.8 637.8,146.1 619.7,164.2 619.7,227.8 560.2,227.8 560.2,67.3 
+				619.7,7.8 619.7,83.9 695.8,7.8 776.1,7.8 678.5,105.3 			"/>
+			<polygon class="st0" points="728.5,67.3 788,7.8 924.8,7.8 871.3,61.3 788,61.3 788,91.1 868.6,91.1 868.6,144.6 788,144.6 
+				788,174.3 868.6,174.3 868.6,227.8 728.6,227.8 728.6,67.3 			"/>
+			<path class="st0" d="M944.7,121.7h20.8c16.9,0,28.8-11.9,28.8-30.9c0-17.5-11.6-29.5-28.8-29.5h-28.8v166.5h-59.5V67.3l59.5-59.5
+				h36.6c46.4,0,80.9,27.1,80.9,74.3c0,24.7-7.1,39-20.2,51.7l19.9,19.6v77.3L944.7,121.7L944.7,121.7z"/>
+			<path class="st0" d="M329.2,346.5c0-63.6,49.4-113.3,113-113.3s113,49.7,113,113.3s-48.8,112.7-113,112.7
+				S329.2,409.6,329.2,346.5z M495.2,346.5c0-31.2-22.9-55-52.9-55s-52.9,23.5-52.9,55s22.6,54.4,52.9,54.4
+				C472.6,401,495.2,377.5,495.2,346.5"/>
+			<path class="st0" d="M563.3,366.7V296l59.5-59.8v129.3c0,19.6,11.3,35.7,32.7,35.7s32.7-15.2,32.7-35.7V236.2h59.5v130.5
+				c0,52-38.4,92.5-92.2,92.5S563.3,418.8,563.3,366.7"/>
+			<path class="st0" d="M749.1,402.7h92.5c14,0,18.7-7.7,18.7-14.9c0-7.1-4.8-14.9-18.7-14.9H841c-45.8,0-77-25.3-77-68.4
+				s32.1-68.4,80.9-68.4h131.7l-53.2,53.5h-81.2c-14,0-18.1,8-18.1,14.9c0,6.8,4.2,14.9,17,14.9h2.4c46.1,0,77,25,77,68.7
+				s-31.8,68.1-80.9,68.1h-90.4L749.1,402.7L749.1,402.7z"/>
+			<polygon class="st0" points="929,295.7 988.5,236.2 1125.3,236.2 1071.8,289.7 988.5,289.7 988.5,319.5 1069.1,319.5 1069.1,373 
+				988.5,373 988.5,402.7 1069.1,402.7 1069.1,456.3 929,456.3 			"/>
+			<polygon class="st0" points="130.9,456.3 130.9,236.2 190.4,236.2 190.4,319.2 261.7,319.2 261.7,236.2 321.2,236.2 321.2,396.8 
+				261.7,456.3 261.7,372.7 190.4,372.7 190.4,456.3 			"/>
+		</g>
+	</g>
+</g>
+</svg>

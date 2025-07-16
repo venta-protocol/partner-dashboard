@@ -25,20 +25,29 @@ export const EmailForm = () => {
       }
 
       setHasRunLogin(true);
-      toast.success("Successful Login");
       const res = await signIn("credentials", {
         redirect: false,
         email,
         password: "",
         callbackUrl: "/dashboard",
       });
-      if (!res.ok) {
+
+      console.log("NextAuth signIn response:", res);
+
+      if (res?.error) {
         // Show error to user instead of redirecting
-        toast.error("Invalid credentials");
+        let errorMessage = "Invalid credentials - Access denied";
+        toast.error(errorMessage);
         await logout();
         setHasRunLogin(false);
-      } else {
+      } else if (res?.ok) {
+        toast.success("Successful Login");
         router.push(`/dashboard`);
+      } else {
+        // Fallback error handling
+        toast.error("Login failed - Please try again");
+        await logout();
+        setHasRunLogin(false);
       }
     };
 

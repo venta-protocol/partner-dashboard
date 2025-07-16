@@ -105,7 +105,6 @@ export const authConfig = {
         token.receivingWallet = user.receivingWallet;
       }
 
-      console.log("trigger", trigger);
       if (trigger === "update") {
         let data = { ...token };
 
