@@ -14,6 +14,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Venta POS",
   description: "Venta POS",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 // RootLayout Component
