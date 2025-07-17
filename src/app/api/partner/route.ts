@@ -76,6 +76,7 @@ export const PUT = async (req: NextRequest, res: NextResponse) => {
       method: "PUT",
       headers: {
         "x-api-key": apiKey,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         partnerName,

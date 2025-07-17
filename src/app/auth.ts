@@ -47,7 +47,7 @@ export const authConfig = {
         if (!userEmail) return null;
 
         const partnerDataRes = await fetch(
-          `${backend_path}/v1/admin/login?email=${userEmail}`,
+          `${backend_path}/v1/admin/partner-login?email=${userEmail}`,
           {
             method: "GET",
             headers: { "x-admin-key": process.env.ADMIN_KEY! },

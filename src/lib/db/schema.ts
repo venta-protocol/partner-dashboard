@@ -21,7 +21,7 @@ export const partners = pgTable("partners", {
   mpcWallet: varchar("mpc_wallet", { length: 64 }).notNull(),
   receivingWallet: varchar("receiving_wallet", { length: 64 }).notNull(),
   website: varchar("website", { length: 255 }),
-  contactNumber: varchar("contact_number", { length: 20 }),
+  contactPhone: varchar("contact_phone", { length: 20 }),
   country: varchar("country", { length: 3 }).notNull(),
   rateLimitPerMin: integer("rate_limit_per_min").default(60),
   defaultFeeBps: integer("default_fee_bps").default(0),
