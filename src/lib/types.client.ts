@@ -5,17 +5,19 @@ export enum HttpMethod {
   GET = "GET",
 }
 
+export type IShopData = {
+  id: string;
+  externalId: string;
+  name: string;
+  email: string;
+  isActive: boolean;
+  createdAt: string;
+};
+
 export type IPartnerData = {
   partnerName: string;
   receivingWallet: string;
   apiKey: string;
-  shops: {
-    id: string;
-    name: string;
-    email: string;
-    mpcWallet: string;
-    country: string;
-    createdAt: string;
-  }[];
+  shops: IShopData[];
   partnerBalance: string;
 };

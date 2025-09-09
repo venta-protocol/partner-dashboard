@@ -3,18 +3,12 @@
 import PrivyWrapper from "@/lib/context/privy-wrapper";
 import { PartnerDashboard } from "./partner-dashboard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { IShopData } from "@/lib/types.client";
 
 interface DashboardSectionsProps {
   apiKey: string;
   receivingWallet: string;
-  shops: {
-    id: string;
-    name: string;
-    email: string;
-    mpcWallet: string;
-    country: string;
-    createdAt: string;
-  }[];
+  shops: IShopData[];
   partnerBalance: string;
   sessionUser: any;
 }

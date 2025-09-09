@@ -27,6 +27,8 @@ import { Connection } from "@solana/web3.js";
 import { endpoint } from "@/lib/config";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { IShopData } from "@/lib/types.client";
+import { Badge } from "./ui/badge";
 
 interface ApiKeySectionProps {
   apiKey: string;
@@ -39,14 +41,7 @@ interface CommissionSectionProps {
 }
 
 interface ShopsSectionProps {
-  shops: {
-    id: string;
-    name: string;
-    email: string;
-    mpcWallet: string;
-    country: string;
-    createdAt: string;
-  }[];
+  shops: IShopData[];
 }
 
 export const PartnerDashboard = {
@@ -260,15 +255,32 @@ export const PartnerDashboard = {
             {shops.map((shop) => (
               <div
                 key={shop.id}
-                className="flex items-center justify-between p-4 border rounded-lg"
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 border rounded-xl shadow-sm hover:shadow-md transition"
               >
-                <div>
-                  <p className="font-medium">{shop.name}</p>
+                <div className="flex flex-col space-y-1">
+                  <p className="font-semibold text-lg">{shop.name}</p>
                   <p className="text-sm text-muted-foreground">{shop.email}</p>
+                  <p className="text-xs text-muted-foreground">
+                    External ID:{" "}
+                    <span className="font-mono">{shop.externalId}</span>
+                  </p>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Joined {new Date(shop.createdAt).toLocaleDateString()}
-                </p>
+
+                <div className="flex flex-col sm:items-end mt-3 sm:mt-0 space-y-1">
+                  <Badge
+                    variant={shop.isActive ? "default" : "secondary"}
+                    className={
+                      shop.isActive
+                        ? "bg-green-500/10 text-green-600 border-green-200"
+                        : "bg-gray-200/70 text-gray-700 border-gray-300"
+                    }
+                  >
+                    {shop.isActive ? "Active" : "Inactive"}
+                  </Badge>
+                  <p className="text-xs text-muted-foreground">
+                    Joined {new Date(shop.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
