@@ -56,7 +56,7 @@ export const EmailForm = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <LoginButton />
+      <LoginButton hasRunLogin={hasRunLogin} />
     </div>
   );
 };

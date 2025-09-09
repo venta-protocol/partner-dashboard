@@ -8,10 +8,12 @@ export const LoginButton = ({
   loginText = "Login",
   logoutText = "Logout",
   isDisabled = false,
+  hasRunLogin = false,
 }: {
   loginText?: string;
   logoutText?: string;
   isDisabled?: boolean;
+  hasRunLogin?: boolean;
 }) => {
   const { ready, authenticated, login } = usePrivy();
   const { logout } = usePrivy();
@@ -30,7 +32,7 @@ export const LoginButton = ({
   };
 
   // Disable while loading or if Privy isn't ready
-  const isButtonDisabled = !ready || loading || isDisabled;
+  const isButtonDisabled = !ready || loading || isDisabled || hasRunLogin;
 
   return (
     <Button
@@ -39,7 +41,11 @@ export const LoginButton = ({
       type="button"
       className="w-full"
     >
-      {loading ? "Loading..." : authenticated ? logoutText : loginText}
+      {loading || hasRunLogin
+        ? "Loading..."
+        : authenticated
+        ? logoutText
+        : loginText}
     </Button>
   );
 };

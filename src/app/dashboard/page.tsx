@@ -123,8 +123,8 @@ export default async function Dashboard() {
           <UserMenuWrapper sessionUser={session.user} />
         </div>
         <DashboardSections
-          apiKey={shop.apiKey}
-          receivingWallet={shop.receivingWallet}
+          apiKey={session.user.apiKey || shop.apiKey}
+          receivingWallet={session.user.receivingWallet || shop.receivingWallet}
           shops={shop.shops}
           partnerBalance={shop.partnerBalance}
           sessionUser={session.user}
