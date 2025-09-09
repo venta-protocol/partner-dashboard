@@ -30,7 +30,7 @@ export default function Hero() {
 
   return (
     <section className="flex flex-col justify-center items-center text-center px-6 pt-48 pb-16 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#1a1a33] to-[#1b1034] -z-10" />
+      <div className="absolute inset-0 bg-[#0a122b] -z-10" />
       <div className="max-w-6xl mx-auto items-center gap-12">
         <div className="flex flex-col items-center">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto">

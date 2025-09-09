@@ -37,7 +37,7 @@ export default function FaqSection() {
 
   return (
     <section className="relative py-16 px-6" id="faq">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1e1b4b] via-[#1e1b4b] to-[#0f172a] -z-10" />
+      <div className="absolute inset-0 bg-[#0a122b] -z-10" />
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
         <div>
           <h2 className="text-white text-3xl font-bold mb-4">

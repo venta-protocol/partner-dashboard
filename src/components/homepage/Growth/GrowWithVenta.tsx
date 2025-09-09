@@ -24,7 +24,7 @@ export default function GrowWithVenta() {
 
   return (
     <section className="relative py-16 px-6" id="growth">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#1e1b4b] to-[#1e1b4b] -z-10" />
+      <div className="absolute inset-0 bg-[#0a122b] -z-10" />
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4 text-white">Grow With Venta</h2>
         <p className="text-lg mb-12 text-slate-300">

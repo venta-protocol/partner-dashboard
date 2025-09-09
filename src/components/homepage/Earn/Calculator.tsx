@@ -13,7 +13,7 @@ export default function Calculator() {
 
   return (
     <section id="savings" className="relative py-16 px-6">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1e1b4b] via-[#1e1b4b] to-[#1e1b4b] -z-10" />
+      <div className="absolute inset-0 bg-[#0a122b] -z-10" />
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4 text-white">
           Earn More with Every Transaction

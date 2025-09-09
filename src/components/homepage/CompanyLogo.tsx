@@ -66,7 +66,7 @@ const logos = [
 export default function CompanyLogo() {
   return (
     <section className="relative py-16 px-6">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1b1034] to-[#0f172a] -z-10" />
+      <div className="absolute inset-0 bg-[#0a122b] -z-10" />
       <div className="container mx-auto text-center">
         <h3 className="text-3xl font-semibold mb-12 text-slate-300">
           Trusted by industry leaders and innovators
