@@ -205,13 +205,19 @@ export const PartnerDashboard = {
           buttonText: `Withdraw ${commission} USD`,
           description: "Send transfer request",
         });
-        const connection = new Connection(endpoint);
-        const confirmation = await connection.getTransaction(signature, {
-          commitment: "confirmed",
-          maxSupportedTransactionVersion: 0,
-        });
+        const connection = new Connection(endpoint, "processed");
+        const { blockhash, lastValidBlockHeight } =
+          await connection.getLatestBlockhash();
+        const confirmation = await connection.confirmTransaction(
+          { signature, blockhash, lastValidBlockHeight },
+          "processed"
+        );
 
-        if (confirmation && !confirmation.meta?.err) {
+        if (confirmation && !confirmation.value?.err) {
+          await sendBackendRequest(Endpoint.PARTNER, HttpMethod.PUT, {
+            action: "refresh",
+          });
+
           toast.success(`Successfully withdraw ${commission} USD`);
         } else {
           toast.error("Transaction failed, please try agian");

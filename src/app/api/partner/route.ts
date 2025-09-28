@@ -20,30 +20,31 @@ export const PUT = async (req: NextRequest, res: NextResponse) => {
     return NextResponse.json({ error: "Invalid request" }, { status: 500 });
   }
 
-  if (data.action === "withdraw") {
-    // 1. Create withdraw from privy wallet to receiving wallet
-    const { mpcWallet, receivingWallet } = session.user;
+  switch (data.action) {
+    case "withdraw":
+      // 1. Create withdraw from privy wallet to receiving wallet
+      const { mpcWallet, receivingWallet } = session.user;
 
-    if (mpcWallet === receivingWallet) {
-      return NextResponse.json(
-        { error: "MPC wallet and receiving wallet cannot be the same" },
-        { status: 400 }
-      );
-    }
+      if (mpcWallet === receivingWallet) {
+        return NextResponse.json(
+          { error: "MPC wallet and receiving wallet cannot be the same" },
+          { status: 400 }
+        );
+      }
 
-    const service = VentaSDKService.getService();
-    const { base64, signature, status, error } = await service.getWithdrawalTx(
-      new PublicKey(mpcWallet),
-      new PublicKey(receivingWallet)
-    );
+      const service = VentaSDKService.getService();
+      const { base64, signature, status, error } =
+        await service.getWithdrawalTx(
+          new PublicKey(mpcWallet),
+          new PublicKey(receivingWallet)
+        );
 
-    if (status === 204 || status === 400) {
-      return NextResponse.json({ error }, { status: 400 });
-    } else if (status === 500) {
-      return NextResponse.json({ error }, { status: 500 });
-    }
+      if (status === 204 || status === 400) {
+        return NextResponse.json({ error }, { status: 400 });
+      } else if (status === 500) {
+        return NextResponse.json({ error }, { status: 500 });
+      }
 
-    try {
       // Invalidate cache after withdrawal since balance will change
       await invalidateCachedPartnerData(session.user.id);
 
@@ -55,61 +56,73 @@ export const PUT = async (req: NextRequest, res: NextResponse) => {
         },
         { status: 200 }
       );
-    } catch (error: any) {
-      return NextResponse.json({ error }, { status: 500 });
-    }
-  } else if (data.action === "update") {
-    const {
-      partnerName,
-      receivingWallet,
-      website,
-      contactPhone,
-      defaultFeeBps,
-    } = data;
 
-    const apiKey = session.user.apiKey;
-    if (!apiKey) {
-      return NextResponse.json({ error: "API key not found" }, { status: 400 });
-    }
-
-    const updateRes = await fetch(`${backend_path}/v1/partner/profile`, {
-      method: "PUT",
-      headers: {
-        "x-api-key": apiKey,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    case "refresh":
+      const {
         partnerName,
-        receivingWallet,
+
         website,
         contactPhone,
         defaultFeeBps,
-      }),
-    });
+      } = data;
 
-    const { data: updateData, success } = await updateRes.json();
-    if (!updateRes.ok || !success) {
+      const apiKey = session.user.apiKey;
+      if (!apiKey) {
+        return NextResponse.json(
+          { error: "API key not found" },
+          { status: 400 }
+        );
+      }
+
+      const updateRes = await fetch(`${backend_path}/v1/partner/profile`, {
+        method: "PUT",
+        headers: {
+          "x-api-key": apiKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          partnerName,
+          receivingWallet: data.receivingWallet,
+          website,
+          contactPhone,
+          defaultFeeBps,
+        }),
+      });
+
+      const { data: updateData, success } = await updateRes.json();
+      if (!updateRes.ok || !success) {
+        return NextResponse.json(
+          { error: "Failed to update partner info" },
+          { status: 500 }
+        );
+      }
+      if (updateData.statusCode !== 200) {
+        return NextResponse.json(
+          { error: "Failed to update partner info" },
+          { status: updateData.statusCode }
+        );
+      }
+
+      // Invalidate cache after successful update
+      await invalidateCachedPartnerData(session.user.id);
+
       return NextResponse.json(
-        { error: "Failed to update partner info" },
-        { status: 500 }
+        {
+          message: "Partner info updated successfully",
+          data: updateData,
+        },
+        { status: 200 }
       );
-    }
-    if (updateData.statusCode !== 200) {
-      return NextResponse.json(
-        { error: "Failed to update partner info" },
-        { status: updateData.statusCode }
-      );
-    }
 
-    // Invalidate cache after successful update
-    await invalidateCachedPartnerData(session.user.id);
+    case "refresh":
+      try {
+        await invalidateCachedPartnerData(session.user.id);
+        return NextResponse.json({ success: true }, { status: 200 });
+      } catch (error) {
+        return NextResponse.json({ error }, { status: 500 });
+      }
 
-    return NextResponse.json(
-      {
-        message: "Partner info updated successfully",
-        data: updateData,
-      },
-      { status: 200 }
-    );
+    default:
+      break;
   }
 };

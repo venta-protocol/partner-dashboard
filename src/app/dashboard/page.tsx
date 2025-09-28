@@ -17,7 +17,7 @@ import { SessionProvider } from "next-auth/react";
 async function fetchPartnerDataFromAPIs(session: any): Promise<IPartnerData> {
   console.log("Fetching fresh partner data from APIs...");
 
-  const connection = new Connection(endpoint);
+  const connection = new Connection(endpoint, "processed");
   const [allBalances, partnerDataRes] = await Promise.all([
     Promise.all(
       SupportedSplTokens.map(async (token) => {
